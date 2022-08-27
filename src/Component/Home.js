@@ -36,7 +36,7 @@ const Home = () => {
       <h1>Available User : {user.length}</h1>
       {user.map((u) => (
         <li key={u._id}>
-          {u.name} :{u.email}
+          {u.name} :{u.email} : {u.roll ? u.roll : "0"}
           <button
             onClick={() => {
               handleToDelete(u._id);
