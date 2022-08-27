@@ -1,7 +1,13 @@
 import React from "react";
 
 const AddUser = () => {
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const user = { name, email };
+    console.log("added", user);
+  };
   return (
     <div>
       <h1> Please fill the Input </h1>
