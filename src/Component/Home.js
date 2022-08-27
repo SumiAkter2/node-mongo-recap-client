@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [user, setUser] = useState([]);
   useEffect(() => {
     fetch(" http://localhost:5000/user")
       .then((res) => res.json())
-      .then((data) => setUser(data));
+      .then((data) => {
+        setUser(data);
+      });
   }, []);
   const handleToDelete = (id) => {
     const process = window.confirm("Are you sure to delete?");
@@ -17,8 +20,10 @@ const Home = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          if (data.deletedCount === 1) {
+          if (data.deletedCount > 0) {
             console.log("Successfully deleted one document.");
+            const remaining = user.filter((u) => u._id !== id);
+            setUser(remaining);
           } else {
             console.log("No documents matched the query. Deleted 0 documents.");
           }
@@ -39,6 +44,7 @@ const Home = () => {
           >
             Delete
           </button>
+          <button key={u._id}>Update</button>
         </li>
       ))}
     </div>
