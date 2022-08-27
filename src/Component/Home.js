@@ -11,6 +11,18 @@ const Home = () => {
     const process = window.confirm("Are you sure to delete?");
     if (process) {
       console.log("deleting", id);
+      fetch(` http://localhost:5000/user/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount === 1) {
+            console.log("Successfully deleted one document.");
+          } else {
+            console.log("No documents matched the query. Deleted 0 documents.");
+          }
+        });
     } else {
     }
   };
