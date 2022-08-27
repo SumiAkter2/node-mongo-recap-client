@@ -44,7 +44,9 @@ const Home = () => {
           >
             Delete
           </button>
-          <button key={u._id}>Update</button>
+          <Link to={`/update/${u._id}`}>
+            <button key={u._id}>Update</button>
+          </Link>
         </li>
       ))}
     </div>
